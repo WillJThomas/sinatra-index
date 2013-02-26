@@ -22,13 +22,20 @@ class TestIndices < Test::Unit::TestCase
   end
   
   def test_subfolders
-    get '/qux'
+    get '/qux/'
     assert_equal 'qux/foo.html', last_response.body
   end
 
   def test_honours_explicit_routes
     get '/defined'
     assert_equal 'Hello world!', last_response.body
+  end
+
+  def test_appends_trailing_slash_if_subfolder
+    get '/qux'
+    follow_redirect!
+    assert_equal '/qux/', last_request.env['PATH_INFO']
+    assert_equal 'qux/foo.html', last_response.body
   end
   
 end

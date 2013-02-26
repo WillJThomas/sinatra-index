@@ -16,7 +16,8 @@ module Sinatra
           if app.static? && (request.get? || request.head?)
             orig_path = request.path_info
             path = unescape orig_path
-            path = path << '/' unless path.end_with? '/'
+
+            redirect to(path << '/') unless path.end_with? '/'
 
             app.static_indices.each do |idx|
               request.path_info = path + idx
