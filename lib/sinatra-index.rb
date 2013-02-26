@@ -7,18 +7,27 @@ module Sinatra
     def self.registered(app)
       app.set :static_indices, []
       app.before do
-        if app.static? && (request.get? || request.head?)
-          orig_path = request.path_info
-          path = unescape orig_path
-          path = path << '/' unless path.end_with? '/'
 
-          app.static_indices.each do |idx|
-            request.path_info = path + idx
-            static!
+        begin
+          route!
+
+        rescue NotFound
+
+          if app.static? && (request.get? || request.head?)
+            orig_path = request.path_info
+            path = unescape orig_path
+            path = path << '/' unless path.end_with? '/'
+
+            app.static_indices.each do |idx|
+              request.path_info = path + idx
+              static!
+            end
+
+            raise NotFound
           end
 
-          request.path_info = orig_path
-        end 
+        end
+
       end
     end
     

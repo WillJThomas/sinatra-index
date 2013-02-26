@@ -6,9 +6,9 @@ Gem::Specification.new do |s|
   s.name        = "sinatra-index"
   s.version     = Sinatra::Index::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ['Eli Fox-Epstein']
-  s.email       = ['eli@redhyphen.com']
-  s.homepage    = "http://github.com/elitheeli/sinatra-index"
+  s.authors     = ['Eli Fox-Epstein', 'Will Thomas']
+  s.email       = ['eli@redhyphen.com', '']
+  s.homepage    = "https://github.com/WillJThomas/sinatra-index"
   s.summary     = %q{Provides indices for public}
   s.description = %q{Provides indices for public}
 

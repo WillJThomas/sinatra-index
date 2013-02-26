@@ -2,7 +2,7 @@ require 'rubygems'
 require 'test/unit'
 require 'rack/test'
 require 'sinatra/base'
-require "./#{File.dirname(__FILE__)}/../lib/sinatra-index"
+require "#{File.dirname(__FILE__)}/../lib/sinatra-index"
 
 class TestIndices < Test::Unit::TestCase
   include Rack::Test::Methods
@@ -25,6 +25,11 @@ class TestIndices < Test::Unit::TestCase
     get '/qux'
     assert_equal 'qux/foo.html', last_response.body
   end
+
+  def test_honours_explicit_routes
+    get '/defined'
+    assert_equal 'Hello world!', last_response.body
+  end
   
 end
 
@@ -34,5 +39,9 @@ class TestApp < Sinatra::Base
   use_static_indices 'foo.html', 'bar.html'
 
   set :app_file, __FILE__
+
+  get '/defined' do
+    'Hello world!'
+  end
   
 end
