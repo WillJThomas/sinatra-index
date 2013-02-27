@@ -14,7 +14,7 @@ The solution:
 	  ... Sinatra routes ...
 	end
 
-The route will only be overridden if it cannot be routed using your defined Sinatra configuration e.g. if you have a block like this:
+NOTE: static files are given precedence over dynamic routes in sinatra - this library confirms to this e.g. if you have a block like this:
 
 use_static_index 'index.html'
 
@@ -22,4 +22,5 @@ get '/defined' do
     'Hello world!'
 end
 
-the path '/defined' will respond with 'Hello world!'; it will not try and load /defined/index.html file.
+if a /defined/index.html file exists, this will be the response - not 'Hello world!'.
+If you wish for your dynamic route to work then move or delete the /defined/index.html file

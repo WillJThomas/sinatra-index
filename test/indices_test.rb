@@ -26,9 +26,9 @@ class TestIndices < Test::Unit::TestCase
     assert_equal 'qux/foo.html', last_response.body
   end
 
-  def test_honours_explicit_routes
-    get '/defined'
-    assert_equal 'Hello world!', last_response.body
+  def test_static_route_precedence
+    get '/defined/'
+    assert_equal 'defined foo html', last_response.body
   end
 
   def test_appends_trailing_slash_if_subfolder
@@ -47,7 +47,7 @@ class TestApp < Sinatra::Base
 
   set :app_file, __FILE__
 
-  get '/defined' do
+  get '/defined/' do
     'Hello world!'
   end
   
