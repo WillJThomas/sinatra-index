@@ -22,5 +22,5 @@ NOTE: static files are given precedence over dynamic routes in sinatra - this li
         'Hello world!'
     end
 
-if a /defined/index.html file exists in your public directory, the server will respond witht his - not 'Hello world!'.
+if a /defined/index.html file exists in your public directory, the server will respond with this - not 'Hello world!'.
 If you wish for your dynamic route to work then move or delete the /defined/index.html file
